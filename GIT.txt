@@ -1,0 +1,154 @@
+Git - O que é?
+
+Git é um sistema de controle de versão, usado principalmente em desenvolvimento de softwares, com possibilidade de compartilhamento com mais de um dev, para haver trocas e modificações, e interações no código de maneira que todos os devs possam ter acesso. Sem contar pelo histórico de alterações no código, facilitando então a localização de tais alterações e suas respectivas datas.
+
+Ponto na história
+
+Tudo no GIT é movido através dos pontos na história do projeto que são chamados de "commits", esses pontos são formados por conjuntos de alterações em um ou mais arquivos somados a um descritivo que resume as alterações nesse ponto.
+
+Ramificações
+
+As ramificações ou branchs no Git são formas de termos uma mesma versão do código sofrendo alterações e recebendo commits de diferentes fontes e inclusive por diferentes desenvolvedores.
+A partir disso, podemos trabalhar em um ramo onde queremos testar funcionalidades e outra branch onde temos a veersão correta e sem features inacabas.
+Por padrão, você sempre está trabalhando em um ramo no GIT, e mesmo quando você não cria uma branch, o GIT cria automaticamente uma branch chamada (master) como padrão.
+
+Comandos Git:
+
+Verificando as configurações locais
+git config --list
+
+Para encontrar o nome de usuário
+git config --global user.name
+
+Para encontrar o email
+git config --global user.email
+
+Alterar o nome de usuário
+git config --global user.name "nome do usuário"
+
+Alterar o email
+git config --global user.email "email do usuário"
+
+Iniciar um repositório
+git init
+
+Ignorando arquivos
+gitignore
+
+"Baixar" um repositório
+git clone link
+
+Baixar as últimas alterações do servidor
+git pull
+
+Listando o caminho do servidor
+git remote -v
+
+Adicionando o caminho do servidor / Alterando o servidor
+git remote set-url origin git://url
+
+Adicionando um arquivo
+git add nome_do_arquivo
+
+Adicionando tudo de uma vez
+git add .
+
+Removendo arquivos do index
+git reset nome_do_arquivo
+Para remover tudo podemos fazer:
+git reset HEAD .
+
+Salvando as alterações
+git commit -m "mensagem"
+
+Verificando o que foi alterado
+git status
+git diff
+
+Listando as branches existentes
+git branch
+
+Criando uma nova branch
+git branch nome
+
+Criando uma nova branch e já trocando para ela
+git checkout -b nome_da_nova_branch
+
+Deletando uma branch
+git branch -d nome
+
+Trocando de branch
+git checkout nome_da_branch_existente
+
+Enviando uma branch para o servidor
+git push origin nome_da_branch
+
+Deletando uma branch remota
+git push origin :nome_da_branch
+
+Juntando branches
+git checkout master
+git merge nome_branch
+
+Enviando as alterações para o servidor
+git push origin master
+
+Deletando arquivo ou pasta com Git
+git rm nome_do_arquivo_ou_pasta
+
+Movendo ou renomeando arquivo ou pasta com Git
+git mv nome_do_arquivo_ou_pasta destino
+
+Desfazendo do stage
+git reset nome_do_arquivo
+
+Desfazendo alterações em um arquivo para o último commit
+git checkout nome_do_arquivo
+
+Desfazendo tudo para o último commit
+git checkout .
+
+Desfazendo uma alteração, mas colocando ela em stage
+git reset --soft HEAD~1
+
+Desfazendo para o último commit sem colocar as alterações em stage
+git reset --hard HEAD~1
+
+Desfazendo para um commit específico
+git revert hash
+
+Desfazendo o último push
+git reset --hard HEAD~1 && git push -f origin master
+
+Analisando o histórico (log)
+git log
+
+Observando o histórico com um número certo de alterações
+git log -p -2
+
+Observando o log de maneira resumida
+git log --pretty=oneline
+
+Deixando o log ainda mais bonito
+git log --pretty=format:"%h = %an, %ar - %s"
+
+Criar uma tag Git
+git tag 0.0.1
+
+Listando as tags Git
+git tag
+
+Criar uma tag com mensagem (anotada)
+git tag -a 0.0.1 -m "versão 0.0.1"
+
+Criar uma tag a partir de um commit
+git tag -a 0.0.1 b6120
+
+Criando a tag no servidor
+git push origin 0.0.1
+git push origin --tags
+
+
+
+
+
