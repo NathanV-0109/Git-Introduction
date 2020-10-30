@@ -1,6 +1,6 @@
 //Git - O que é?
 
-Git é um sistema de controle de versão, usado principalmente em desenvolvimento de softwares, com possibilidade de compartilhamento com mais de um dev, para haver trocas e modificações, e interações no código de maneira que todos os devs possam ter acesso. Sem contar pelo histórico de alterações no código, facilitando então a localização de tais alterações e suas respectivas datas.
+//Git é um sistema de controle de versão, usado principalmente em desenvolvimento de softwares, com possibilidade de compartilhamento com mais de um dev, para haver trocas e modificações, e interações no código de maneira que todos os devs possam ter acesso. Sem contar pelo histórico de alterações no código, facilitando então a localização de tais alterações e suas respectivas datas.
 
 Ponto na história
 
