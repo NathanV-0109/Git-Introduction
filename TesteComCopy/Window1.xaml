@@ -1,0 +1,48 @@
+﻿<Window x:Class="TesteComCopy.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="MODBUS" Height="650" Width="850" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid Background="Snow">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="126.692*" />
+            <RowDefinition Height="485.308*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="828.499*" />
+            <ColumnDefinition Width="0*" />
+        </Grid.ColumnDefinitions>
+        <TextBox  Height="40.008" HorizontalAlignment="Left" Margin="250.05,125.025,0,0" Name="txtID" VerticalAlignment="Top" Width="55.011" BorderThickness="1.5" BorderBrush="Black" FontSize="25" MaxLength="3" TextChanged="txtID_TextChanged" Grid.RowSpan="2">1</TextBox >
+        <TextBox Height="40.008" HorizontalAlignment="Left" Margin="250.05,63.557,0,0" Name="txtEndereco" VerticalAlignment="Top" Width="55.011" BorderThickness="1.5" BorderBrush="Black" FontSize="25" MaxLength="5" Grid.Row="1">0</TextBox>
+        <TextBox HorizontalAlignment="Left" Margin="250.05,125.025,0,0" Name="txtNumBobinas" Width="55.011" BorderThickness="1.5" BorderBrush="Black" FontSize="25" MaxLength="2" Height="40.219" VerticalAlignment="Top" Grid.Row="1">10</TextBox>
+        <Label Height="40.008" HorizontalAlignment="Left" Margin="78.349,124.525,0,0" Name="label1" VerticalAlignment="Top" Width="171.685" FontSize="25" FontFamily="Segoe UI" Grid.RowSpan="2">ID Dispositivo:</Label>
+        <Label FontFamily="Segoe UI" FontSize="25" Height="40.008" HorizontalAlignment="Left" Margin="78.349,63.557,0,0" Name="label2" VerticalAlignment="Top" Width="171.685" Grid.Row="1">Endereço:</Label>
+        <Label FontFamily="Segoi UI" FontSize="25" HorizontalAlignment="Left" Margin="78.349,125.236,0,0" Name="label3" Width="171.685" Height="40.008" VerticalAlignment="Top" Grid.Row="1">Nº de Bobinas:</Label>
+        <GroupBox Header="Função" HorizontalAlignment="Left" Margin="72.349,188.582,0,166.7" Name="groupBox1" Width="196.706" FontSize="20" Grid.Row="1">
+            <Grid Height="98.353" Name="grid1" Width="178.369">
+                <RadioButton Height="26.672" Margin="6.486,15.003,63.552,0" Name="rdLeBobina" VerticalAlignment="Top" FontSize="20">Ler Bobina</RadioButton>
+                <RadioButton Margin="6.486,46.676,50.192,21.671" Name="rdLeRegistro" FontSize="20" IsChecked="True">Ler Registro</RadioButton>
+            </Grid>
+        </GroupBox>
+        <Label Height="35.007" HorizontalAlignment="Left" Margin="70.014,0,0,96.686" Name="label4" VerticalAlignment="Bottom" Width="73.348" FontSize="25" FontFamily="Segoi UI" Grid.Row="1">Scan:</Label>
+        <Menu Height="31.673" Name="menu1" VerticalAlignment="Top" Background="Snow" Margin="0,0,347.904,0">
+            <MenuItem Header="Arquivo" FontSize="15" FontFamily="Times New Roman" Click="MenuItem_Click_1">
+                <MenuItem Header="Conectar" Click="Btn_AbriTela"/>
+                <MenuItem Header="Sair" Click="btn_FechaTela"/>
+            </MenuItem>
+            <MenuItem Header="Opções" FontSize="15" FontFamily="Times New Roman">
+                <MenuItem Header="Escrever Registro" />
+                <MenuItem Header="Escrever Bobina" />
+                <MenuItem Header="Mostrar Dados" Click="btn_mostrarMensagens"/>
+            </MenuItem>
+            <MenuItem Header="Ajuda" FontSize="15" FontFamily="Times New Roman" />
+        </Menu>
+        <TextBox BorderBrush="Black" BorderThickness="1.5" FontSize="25" Margin="140.028,0,0,91.685" MaxLength="4" Name="txtTempoScan" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="91.018" Height="40.008" VerticalAlignment="Bottom" Grid.Row="1" TextChanged="txtTempoScan_TextChanged" KeyDown="OnKeyDownHandler"  />
+        <Label Height="36.342" HorizontalAlignment="Left" Margin="226.712,0,0,93.352" Name="label5" VerticalAlignment="Bottom" Width="40.991" FontSize="25" FontFamily="Segoi UI" Grid.Row="1">ms</Label>
+        <Button Height="41.675" HorizontalAlignment="Right" Margin="0,0,46.676,48.468" Name="button1" VerticalAlignment="Bottom" Width="98.353" FontSize="20" FontFamily="Segoe UI" Background="LightGray" Grid.Row="1">Limpa</Button>
+        <Label Height="35.007" HorizontalAlignment="Right" Margin="0,0,243.382,96.686" Name="label6" VerticalAlignment="Bottom" Width="143.362" FontSize="17" FontFamily="Segoi UI" Grid.Row="1">Total Mensagens:</Label>
+        <Label Height="28" HorizontalAlignment="Right" Margin="0,0,318.373,48.468" Name="label7" VerticalAlignment="Bottom" Width="68.347" FontSize="17" FontFamily="Segoi UI" Grid.Row="1">Falhas:</Label>
+        <TextBox  HorizontalAlignment="Right" Margin="0,0,46.676,170.773" Name="txtMostra" Width="340.068" TextChanged="textBox1_TextChanged" Grid.Row="1" />
+        <Label Grid.Row="1" Height="38.341" HorizontalAlignment="Right" Margin="0,0,195.039,99.635" Name="lblTotal" VerticalAlignment="Bottom" Width="41.675" FontSize="20">0</Label>
+        <Label FontSize="20" Height="38.341" HorizontalAlignment="Right" Margin="0,0,281.723,44.41" Name="lblFalhas" VerticalAlignment="Bottom" Width="41.675" Grid.Row="1">0</Label>
+    </Grid>
+</Window>

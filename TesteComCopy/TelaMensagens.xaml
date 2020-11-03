@@ -1,0 +1,16 @@
+﻿<Window x:Class="TesteComCopy.TelaMensagens"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Mensagens" Height="400" Width="600">
+    <Grid>
+        <Menu Height="27" Name="menu1" VerticalAlignment="Top" Background="White" Margin="0,0,-54,0">
+            <MenuItem Header="Sair" FontSize="15" Click="btn_FechaTela"/>
+            <MenuItem Header="Formatar" FontSize="15">
+                <MenuItem Header="Hexadecimal" />
+                <MenuItem Header="Decimal" />
+            </MenuItem>
+            <MenuItem Header="Limpar" FontSize="15" />
+            <MenuItem Header="Parar" FontSize="15" Name="ControleParar" Click="btn_TrocaModo"/>
+        </Menu>
+    </Grid>
+</Window>
