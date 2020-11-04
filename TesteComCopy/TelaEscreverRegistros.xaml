@@ -1,0 +1,13 @@
+﻿<Window x:Class="TesteComCopy.TelaEscreverRegistros"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="TelaEscreverRegistros" Height="257" Width="259" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBox Height="27" Margin="113,31,85,0" Name="txtNumRegistro" VerticalAlignment="Top" />
+        <TextBox Height="27" Margin="113,91,85,0" Name="txtValorRegistro" VerticalAlignment="Top" />
+        <Label Height="28" Margin="29,30,0,0" Name="label1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81">Nº Registros</Label>
+        <Label Height="28" HorizontalAlignment="Left" Margin="29,89,0,0" Name="label2" VerticalAlignment="Top" Width="81">Valor</Label>
+        <Button Height="31" HorizontalAlignment="Left" Margin="46,0,0,23" Name="btnCancelar" VerticalAlignment="Bottom" Width="64" Click="btnCancelar_Click">Cancelar</Button>
+        <Button Height="31" Margin="0,0,39,23" Name="btnOK" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="64" Click="btnOK_Click">OK</Button>
+    </Grid>
+</Window>

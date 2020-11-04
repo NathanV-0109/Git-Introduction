@@ -24,6 +24,7 @@ namespace TesteComCopy
         public Window1()
         {
             InitializeComponent();
+            txtTempoScan.Text = "100";
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -62,6 +63,22 @@ namespace TesteComCopy
             telaMensagens.Show();
         }
 
+        private void btn_mostraEscreveRegistros(object sender, RoutedEventArgs e)
+        {
+            TelaEscreverRegistros telaRegistros = new TelaEscreverRegistros();
+            //this.Hide();
+            telaRegistros.ShowDialog();
+            this.Show();
+        }
+
+        private void btn_mostraEscreveBobinas(object sender, RoutedEventArgs e)
+        {
+            TelaEscreverBobinas telaBobinas = new TelaEscreverBobinas();
+            //this.Hide();
+            telaBobinas.ShowDialog();
+            this.Show();
+        }
+
         private void btn_TrocaModo(object sender, RoutedEventArgs e)
         {
             
@@ -75,6 +92,7 @@ namespace TesteComCopy
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            txtEndereco.Text = RTU.bitEndereco.ToString();
             if (RTU.flagOK)
             {
                 dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -97,32 +115,51 @@ namespace TesteComCopy
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            
-            int total = RTU.totalContagens++;
-            lblTotal.Content = total.ToString();
-
-            if (rdLeRegistro.IsChecked)
+           
+            try
             {
-                RTU.registros = RTU.LeRegistro(RTU.porta, RTU.taxaTransferencia, RTU.dataBits, RTU.bitParidade, RTU.bitParada, RTU.bitID, RTU.bitEndereco, RTU.bitBobinasLe);
-                txtMostra.Clear();
-
-                for (int i = 0; i < RTU.registros.Length; i++)
+                if (rdLeRegistro.IsChecked == true)
                 {
-                    ushort aux = RTU.registros[i];
-                    if (aux > 60000)
+                    RTU.registros = RTU.LeRegistro(RTU.porta, RTU.taxaTransferencia, RTU.dataBits, RTU.bitParidade, RTU.bitParada, RTU.bitID, RTU.bitEndereco, RTU.bitBobinasLe);
+                    txtMostra.Clear();
+
+                    for (int i = 0; i < RTU.registros.Length; i++)
                     {
-                        int temp = 65545 - (int)aux - 9;
-                        aux = Convert.ToUInt16(temp);
+                        ushort aux = RTU.registros[i];
+                        if (aux > 60000)
+                        {
+                            int temp = 65545 - (int)aux - 9;
+                            aux = Convert.ToUInt16(temp);
+                        }
+                        txtMostra.Text += "<" + aux.ToString() + ">" + Environment.NewLine;
                     }
-                    txtMostra.Text += "<" + aux.ToString() + ">" + Environment.NewLine;
                 }
+                else
+                {
+                    RTU.Bobinas = RTU.LeBobinas(RTU.porta, RTU.taxaTransferencia, RTU.dataBits, RTU.bitParidade, RTU.bitParada, RTU.bitID, RTU.bitEndereco, RTU.bitBobinasLe);
+
+                    txtMostra.Clear();
+                    for (int i = 0; i < RTU.Bobinas.Length; i++)
+                    {
+
+                        if (RTU.Bobinas[i] == true)
+                            txtMostra.Text += "<0001>" + Environment.NewLine;
+                        else
+                        {
+                            txtMostra.Text += "<0000>" + Environment.NewLine;
+                        }
+                    }
+                }
+                int total = RTU.totalContagens++;
+                lblTotal.Content = total.ToString();
+                Registro.IsEnabled = true;
+                Bobina.IsEnabled = true;
             }
-            else
+            catch
             {
-
+                int total2 = RTU.totalContagens2++;
+                lblFalhas.Content = total2.ToString();
             }
-
-            
         }
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
@@ -131,10 +168,8 @@ namespace TesteComCopy
                 try
                 {
                     dispatcherTimer.Stop();
-                    RTU.flagOK = false;
                     RTU.tempo = 0;
                     RTU.tempo = Convert.ToInt32(txtTempoScan.Text);
-                    RTU.flagOK = true;
                     dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, RTU.tempo);
                     dispatcherTimer.Start();
                    

@@ -15,7 +15,7 @@ namespace TesteComCopy
 {
     class RTU
     {
-        public static void EscreveRegistro(string porta, int taxaTransferencia, int dataBits, string bitParidade, string bitParada, byte bitID, ushort bitEndereco, ushort[] bitBobinas)
+        public static void EscreveRegistro(string porta, int taxaTransferencia, int dataBits, string bitParidade, string bitParada, byte bitID, ushort bitEndereco, ushort bitBobinas)
         {
             using (SerialPort port = new SerialPort(porta))
             {
@@ -40,10 +40,11 @@ namespace TesteComCopy
 
                 byte slaveId = bitID;
                 ushort startAddress = bitEndereco;
-                ushort[] registers = bitBobinas;
-                master.Transport.WriteTimeout = 550;
+                ushort registers = bitBobinas;
+                master.Transport.WriteTimeout = 150;
 
-                master.WriteMultipleRegisters(slaveId, startAddress, registers);
+                //master.WriteMultipleRegisters(slaveId, startAddress, registers);
+                master.WriteSingleRegister(slaveId, startAddress, bitBobinas);
             }
         }
 
@@ -73,7 +74,7 @@ namespace TesteComCopy
                 byte slaveId = bitID;
                 ushort startAddress = bitEndereco;
                 ushort[] leitura;
-                master.Transport.ReadTimeout = 550;
+                master.Transport.ReadTimeout = 150;
 
                 leitura = master.ReadInputRegisters(slaveId, startAddress, bitBobinas);
 
@@ -83,65 +84,67 @@ namespace TesteComCopy
 
         public static void EscreveBobinas(string porta, int taxaTransferencia, int dataBits, string bitParidade, string bitParada, byte bitID, ushort bitEndereco, int bitBobinas)
         {
-            using (FtdUsbPort port = new FtdUsbPort())
+            using (SerialPort port = new SerialPort(porta))
             {
-                // configure usb port
+                // configure serial port
                 port.BaudRate = taxaTransferencia;
                 port.DataBits = dataBits;
-
                 if (bitParidade == "Sem")
-                    port.Parity = FtdParity.None;
+                    port.Parity = Parity.None;
                 else if (bitParidade == "Ímpar")
-                    port.Parity = FtdParity.Odd;
+                    port.Parity = Parity.Odd;
                 else
-                    port.Parity = FtdParity.Even;
+                    port.Parity = Parity.Even;
 
                 if (bitParada == "1")
-                    port.StopBits = FtdStopBits.One;
+                    port.StopBits = StopBits.One;
                 else
-                    port.StopBits = FtdStopBits.Two;
+                    port.StopBits = StopBits.Two;
 
-                port.OpenByIndex(0);
+                port.Open();
 
                 // create modbus master
                 IModbusSerialMaster master = ModbusSerialMaster.CreateRtu(port);
 
                 byte slaveId = bitID;
                 ushort startAddress = bitEndereco;
-                bool[] bobinas = new bool[bitBobinas];
-                
+                //bool[] bobinas = new bool[bitBobinas];
+                bool auxiliar = bitBobinas == 1 ? true : false;
 
-                master.WriteMultipleCoils(slaveId, startAddress, bobinas);
+                //master.WriteMultipleCoils(slaveId, startAddress, bobinas);
+                master.WriteSingleCoil(slaveId, startAddress, auxiliar);
             }
         }
 
-        public static void LeBobinas(string porta, int taxaTransferencia, int dataBits, string bitParidade, string bitParada, byte bitID, ushort bitEndereco, int bitBobinas)
+        public static bool[] LeBobinas(string porta, int taxaTransferencia, int dataBits, string bitParidade, string bitParada, byte bitID, ushort bitEndereco, int bitBobinas)
         {
-            using (FtdUsbPort port = new FtdUsbPort())
+            using (SerialPort port = new SerialPort(porta))
             {
-                // configure usb port
+                // configure serial port
                 port.BaudRate = taxaTransferencia;
                 port.DataBits = dataBits;
-
                 if (bitParidade == "Sem")
-                    port.Parity = FtdParity.None;
+                    port.Parity = Parity.None;
                 else if (bitParidade == "Ímpar")
-                    port.Parity = FtdParity.Odd;
+                    port.Parity = Parity.Odd;
                 else
-                    port.Parity = FtdParity.Even;
+                    port.Parity = Parity.Even;
 
                 if (bitParada == "1")
-                    port.StopBits = FtdStopBits.One;
+                    port.StopBits = StopBits.One;
                 else
-                    port.StopBits = FtdStopBits.Two;
+                    port.StopBits = StopBits.Two;
 
-                port.OpenByIndex(0);
+                port.Open();
 
                 IModbusSerialMaster master = ModbusSerialMaster.CreateRtu(port);
+                master.Transport.ReadTimeout = 150;
 
-                bool[] bobinas = new bool[bitBobinas];
+                ushort bobinas = Convert.ToUInt16(bitBobinas);
 
-                ushort[] registers = master.ReadCoils(bitID, bitEndereco, bobinas);
+                bool[] registers = master.ReadCoils(bitID, bitEndereco, bobinas);
+
+                return registers;
             }
         }
         public static string porta;
@@ -151,12 +154,16 @@ namespace TesteComCopy
         public static string bitParada;
         public static byte bitID;
         public static ushort bitEndereco;
-        public static ushort[] bitBobinasEscreve;
+        public static ushort bitBobinasEscreve;
         public static ushort bitBobinasLe;
         public static ushort[] registros;
         public static int tempo;
         public static bool flagOK = false;
         public static int totalContagens = 0;
+        public static int totalContagens2 = 0;
+        public static int modoBobinaRegistro = 0;
+        public static bool[] Bobinas;
+       
 
     }
 }

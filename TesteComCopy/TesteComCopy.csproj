@@ -83,6 +83,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TelaEscreverBobinas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TelaEscreverRegistros.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TelaMensagens.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +126,12 @@
     <Compile Include="TelaConectar.xaml.cs">
       <DependentUpon>TelaConectar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TelaEscreverBobinas.xaml.cs">
+      <DependentUpon>TelaEscreverBobinas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TelaEscreverRegistros.xaml.cs">
+      <DependentUpon>TelaEscreverRegistros.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TelaMensagens.xaml.cs">
       <DependentUpon>TelaMensagens.xaml</DependentUpon>
     </Compile>
@@ -130,6 +144,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

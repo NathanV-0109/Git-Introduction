@@ -22,6 +22,7 @@ namespace TesteComCopy
         public TelaConectar()
         {
             InitializeComponent();
+            txtTempo.Text = "150";
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
@@ -49,6 +50,7 @@ namespace TesteComCopy
 
                 RTU.registros = RTU.LeRegistro(RTU.porta, RTU.taxaTransferencia, RTU.dataBits, RTU.bitParidade, RTU.bitParada, RTU.bitID, RTU.bitEndereco, RTU.bitBobinasLe);
                 RTU.flagOK = true;
+
             }
             catch
             {

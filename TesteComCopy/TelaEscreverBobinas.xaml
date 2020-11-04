@@ -1,0 +1,17 @@
+﻿<Window x:Class="TesteComCopy.TelaEscreverBobinas"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="TelaEscreverBobinas" Height="278" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Height="28" Margin="68.5,25,0,0" Name="Valor" VerticalAlignment="Top" HorizontalAlignment="Left" Width="66">Nº Bobina</Label>
+        <TextBox Height="28" Margin="136,25,88,0" Name="txtBobina" VerticalAlignment="Top" />
+        <GroupBox Header="Valor" Margin="68.5,74,66.5,111" Name="groupBox1">
+            <Grid Height="34" Name="grid1" Width="128">
+                <RadioButton Margin="13,10,0,8" Name="rdSelec0" HorizontalAlignment="Left" Width="43">0</RadioButton>
+                <RadioButton Margin="0,10,14,8" Name="rdSelec1" HorizontalAlignment="Right" Width="33">1</RadioButton>
+            </Grid>
+        </GroupBox>
+        <Button Height="44" HorizontalAlignment="Left" Margin="45,0,0,38" Name="btnCancelar" VerticalAlignment="Bottom" Width="76" Click="btnCancelar_Click">Cancelar</Button>
+        <Button Height="44" HorizontalAlignment="Right" Margin="0,0,45,38" Name="btnOK" VerticalAlignment="Bottom" Width="76" Click="btnOK_Click">OK</Button>
+    </Grid>
+</Window>

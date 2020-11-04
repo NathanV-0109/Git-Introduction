@@ -18,3 +18,7 @@ C:\Users\nathan.vilela\Desktop\Ex C#\TesteComCopy\TesteComCopy\bin\Debug\FtdAdap
 C:\Users\nathan.vilela\Desktop\Ex C#\TesteComCopy\TesteComCopy\bin\Debug\log4net.dll
 C:\Users\nathan.vilela\Desktop\Ex C#\TesteComCopy\TesteComCopy\bin\Debug\Modbus.dll
 C:\Users\nathan.vilela\Desktop\Ex C#\TesteComCopy\TesteComCopy\bin\Debug\Unme.Common.dll
+C:\Users\nathan.vilela\Desktop\Ex C#\TesteComCopy\TesteComCopy\obj\Debug\TelaEscreverRegistros.baml
+C:\Users\nathan.vilela\Desktop\Ex C#\TesteComCopy\TesteComCopy\obj\Debug\TelaEscreverRegistros.g.cs
+C:\Users\nathan.vilela\Desktop\Ex C#\TesteComCopy\TesteComCopy\obj\Debug\TelaEscreverBobinas.baml
+C:\Users\nathan.vilela\Desktop\Ex C#\TesteComCopy\TesteComCopy\obj\Debug\TelaEscreverBobinas.g.cs
